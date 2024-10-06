@@ -1,3 +1,5 @@
+
+import os
 import re
 import isodate
 import requests
@@ -12,7 +14,7 @@ URL_PLAYLIST = 'https://www.googleapis.com/youtube/v3/playlistItems?part=content
 URL_VIDEO = 'https://www.googleapis.com/youtube/v3/videos?&part=contentDetails&id={}&key={}&fields=items/contentDetails/duration'
 
 # API Key (to be filled in)
-API_KEY = ""
+API_KEY = os.environ['APIS']
 
 
 def get_playlist_id(playlist_link):
