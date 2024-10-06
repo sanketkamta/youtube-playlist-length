@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags -->
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
+    <meta name="viewport" content="width=device-width"/>
+    <meta name="description"
+          content="Get the total length/duration of a YouTube playlist by passing its link as input. You get the time required to watch that playlist at different speeds.">
+
+
+    <!-- Favicon and title -->
+    <title>YouTube Playlist Length</title>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6W24HY1SKP"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-6W24HY1SKP');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8874895270666721"
+            crossorigin="anonymous"></script>
+
+    <script src="https://kit.fontawesome.com/b9b97931ac.js" crossorigin="anonymous"></script>
+    <!-- Halfmoon CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/halfmoon@1.1.1/css/halfmoon-variables.min.css" rel="stylesheet"/>
+</head>
+<body
+        class="with-custom-webkit-scrollbars with-custom-css-scrollbars"
+        data-dm-shortcut-enabled="true"
+        data-set-preferred-mode-onload="true"
+>
+
+<div class="page-wrapper with-navbar with-navbar-fixed-bottom">
+    <div class="sticky-alerts"></div>
+
+    <!-- Navbar start -->
+    <nav class="navbar h-100 bg-light-lm">
+        <div class="container-lg">
+            <a href="/">
+                <img
+                        src="{{ url_for('static', path='favicon.png') }}"
+                        height="60"
+                        alt="YouTube Playlist Length"
+                />
+            </a>
+            <span class="navbar-text text-monospace">
+                <span class="badge badge-danger text-dark-dm text-white-lm"> v3.2</span>
+            </span>
+            <button
+                    class="btn btn-lg btn-square ml-auto text-danger"
+                    type="button"
+                    onclick="halfmoon.toggleDarkMode()"
+            >
+                <img
+                        src="{{ url_for('static', path='mode.png') }}"
+                        height="40"
+                        alt="github link"
+                />
+                <span class="sr-only">Toggle dark mode</span>
+            </button>
+
+            <a href="">
+                <button class="btn btn-lg btn-square ml-5 text-danger">
+                    <img
+                        src="{{ url_for('static', path='github.svg') }}"
+                        height="40"
+                        alt="github link"
+                    />
+                    <span class="sr-only">Toggle dark mode</span>
+                </button>
+            </a>
+        </div>
+    </nav>
+    <!-- Navbar end -->
+
+    <!-- Content wrapper start -->
+    <div class="content-wrapper mt-20">
+        <div class="container px-20 h-50"></div>
+        <div class="container">
+            <div class="content">
+                <h2 class="content-title">Find the length of any YouTube playlist</h2>
+                <form method="POST" action="/playlist">
+                    <div class="input-group">
+                        <input
+                                type="text"
+                                autofocus="autofocus"
+                                class="form-control"
+                                placeholder="youtube.com/playlist?list=ID"
+                                name="search_playlist"
+                                required="required"
+                        />
+                        <input
+                                type="text"
+                                autofocus="autofocus"
+                                class="form-control"
+                                placeholder="Custom speed"
+                                name="custom_playlist_speed"
+                        />
+                        <div class="input-group-append">
+                            <button class="btn btn-primary ml-5 text-dark-dm shadow-none">Analyze</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="content">
+                {% if display_playlist_text %}
+                {% for x in display_playlist_text %}
+                <p>{{x | safe}}</p>
+                {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="content">
+                <h2 class="content-title">Find the length of any YouTube video</h2>
+                <form method="POST" action="/video">
+                    <div class="input-group">
+                        <input
+                                type="text"
+                                autofocus="autofocus"
+                                class="form-control"
+                                placeholder="youtube.com/watch?v=ID"
+                                name="search_video"
+                                required="required"
+                        />
+                        <input
+                                type="text"
+                                autofocus="autofocus"
+                                class="form-control"
+                                placeholder="Custom speed"
+                                name="custom_video_speed"
+                        />
+                        <div class="input-group-append">
+                            <button class="btn btn-primary ml-5 text-dark-dm shadow-none">Analyze</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="content">
+                {% if display_video_text %}
+                {% for x in display_video_text %}
+                <p>{{x | safe}}</p>
+                {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+
+    </div>
+    <!-- Content wrapper end -->
+
+    <!-- Navbar fixed bottom start -->
+    <nav class="navbar navbar-fixed-bottom bg-light-lm">
+        <div class="footer-content mx-auto">
+            Made with ❤ by  Sanket Kamta.
+        </div>
+    </nav>
+    <!-- Navbar fixed bottom end -->
+</div>
+<!-- Page wrapper end -->
+
+
+<script src="https://cdn.jsdelivr.net/npm/halfmoon@1.1.1/js/halfmoon.min.js"></script>
+<script>
+    // dark mode toggler
+    function toggleDemo() {
+        halfmoon.toggleDarkMode();
+    }
+</script>
+</body>
+</html>
